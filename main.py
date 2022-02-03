@@ -104,10 +104,10 @@ class CarisConverter(Tk):
         main_menu = Menu(self)
         self.config(menu=main_menu)
         file_menu = Menu(main_menu, tearoff=0)
-        file_menu.add_command(label='Open')
+        file_menu.add_command(label='Open', command=self.open_file)
         file_menu.add_command(label='Exit', command=self.exit_app)
 
-        # main_menu.add_cascade(label='File', menu=file_menu, command=fdasdfasdfsa)
+        main_menu.add_cascade(label='File', menu=file_menu)
         main_menu.add_command(label='About', command=lambda: About(self))
 
     def open_file(self) -> (str, None):
@@ -123,7 +123,7 @@ class CarisConverter(Tk):
             self.new_csv_text = self.generate_csv(text)
             self.show_in_text_field(text=text)
         except Exception as e:
-            warning_box(text=f'Error: {e}')
+            warning_box(text=f'Error: file not defined')
 
     def show_in_text_field(self, text: str = '', new_text=None):
         self.textFile.delete(0.1, END)
